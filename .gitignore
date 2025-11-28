@@ -1,0 +1,9 @@
+*/build/
+*.class
+*.class*
+*.bin
+*.lock
+*.properties
+*.probe
+*.bat
+
