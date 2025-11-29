@@ -3,7 +3,6 @@ package it.unibo.mvc;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -17,6 +16,7 @@ import java.util.Objects;
 public final class DrawNumberApp implements DrawNumberViewObserver {
 
     private static final String CONFIG_FILE_NAME = "config.yml";
+    private static final String LOG_FILE_NAME = "out.log";
     private static final int MIN = 0;
     private static final int MAX = 100;
     private static final int ATTEMPTS = 10;
@@ -128,7 +128,8 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
             CONFIG_FILE_NAME,
             new DrawNumberViewImpl(),
             new DrawNumberViewImpl(),
-            new PrintStreamView(System.out)
+            new PrintStreamView(System.out),
+            new PrintStreamView(LOG_FILE_NAME)
         );
     }
 
