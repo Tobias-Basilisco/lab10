@@ -126,7 +126,9 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
     public static void main(final String... args) throws FileNotFoundException {
         new DrawNumberApp(
             CONFIG_FILE_NAME,
-            new DrawNumberViewImpl()
+            new DrawNumberViewImpl(),
+            new DrawNumberViewImpl(),
+            new PrintStreamView(System.out)
         );
     }
 
