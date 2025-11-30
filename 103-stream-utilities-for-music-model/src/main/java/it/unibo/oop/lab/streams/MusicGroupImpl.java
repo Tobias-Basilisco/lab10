@@ -50,6 +50,9 @@ public final class MusicGroupImpl implements MusicGroup {
 
     @Override
     public int countSongs(final String albumName) {
+        if (!albums.containsKey(albumName)){
+            throw new IllegalArgumentException("No album called: " + albumName); // in una vera app creerei un error logger come con le GUI
+        }
         return (int) songs.stream()
                     .filter(x -> x.getAlbumName().isPresent())
                     .filter(x -> x.getAlbumName().get().equals(albumName))
@@ -65,7 +68,15 @@ public final class MusicGroupImpl implements MusicGroup {
 
     @Override
     public OptionalDouble averageDurationOfSongs(final String albumName) {
-        return OptionalDouble.empty();
+        if (!albums.containsKey(albumName)){
+            throw new IllegalArgumentException("No album called: " + albumName); // in una vera app creerei un error logger come con le GUI
+        }
+        
+        return songs.stream()
+                .filter(x -> x.getAlbumName().isPresent())
+                .filter(x -> x.getAlbumName().get().equals(albumName))
+                .mapToDouble(x -> x.getDuration())
+                .average();
     }
 
     @Override
